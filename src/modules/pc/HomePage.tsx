@@ -38,7 +38,6 @@ export default class Main extends React.Component<any, any> {
         }
       ]
     }
-    console.log(this.state);
   }
 
   componentWillMount(){
@@ -67,16 +66,16 @@ export default class Main extends React.Component<any, any> {
     }
 
     return (
-
       <div className="homePageContainer">
         <div className="top-banner">
-          <Icon style={{"margin-right":"60px"}} size="50" type={"logo"}/>
+          <Icon style={{"marginRight":"60px"}} size={"50px"} type={"logo"}/>
           <div className="nav-container">
             <NavigationBar navList={this.state.navList}/>
           </div>
           <div className="user-container">
+            <span className="user-name">{user.weixinName}</span>
             <div className="img-box">
-              <img></img>
+              <img src={user.headimgUrl}></img>
             </div>
           </div>
         </div>

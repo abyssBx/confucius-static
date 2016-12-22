@@ -1,4 +1,9 @@
 .homePageContainer{
+  font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  word-wrap: break-word;
+
   width: 620px;
   height:auto;
   margin: 0 auto;
@@ -27,9 +32,13 @@
     .user-container{
       display: inline-block;
       float:right;
+      .user-name{
+        display: block;
+        float: right;
+        margin-top: 12px;
+      }
       .img-box{
-        width: 68px;
-        height: 45px;
+        display:inline-block;
         position: relative;
         padding: 5px 0;
         cursor: pointer;
@@ -45,9 +54,22 @@
 
   .module-container{
     width:100%;
+    border:1px solid saddlebrown;
 
     .page-module{
+      margin:5px auto 5px 10px;
+      .module-title{
+        display: block;
+      }
+      .module-describe{
+        display: block;
+        font-size:13px;
+        margin-left: 2em;
+        margin-top:-5px;
+      }
+      .module-item{
 
+      }
     }
   }
   .headImage{
