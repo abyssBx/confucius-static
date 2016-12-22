@@ -29,7 +29,7 @@ export default class Login extends React.Component<any,any>{
       alert("该浏览器不支持socket");
     }
     // 创建socket
-    this.webSocket = new WebSocket("ws://127.0.0.1:8080/session");
+    this.webSocket = new WebSocket("ws://www.confucius.mobi:8080/session");
     this.webSocket.onopen = e=>{console.log("链接打开!");};
     // 处理消息
     this.webSocket.onmessage = e=>{this.dispatchMessage(e);};
@@ -51,6 +51,8 @@ export default class Login extends React.Component<any,any>{
         case "QR_CREATE":{
           console.log("获取二维码");
           this.setState({qrPicUrl:data.picUrl});
+          // 获取二维码后60秒刷新
+          setTimeout(()=>this.refreshQRCode(),60000);
           break;
         }
         case "LOGIN_SUCCESS":{
@@ -60,6 +62,10 @@ export default class Login extends React.Component<any,any>{
           dispatch(set(`${p}.user`,data.data));
           // 跳转到主页
           this.context.router.push({ pathname: '/static/homepage'});
+          break;
+        }
+        case "ERROR":{
+          dispatch(alertMsg(data.msg));
           break;
         }
         default:{
@@ -84,7 +90,6 @@ export default class Login extends React.Component<any,any>{
           <img src={this.state.qrPicUrl} className="qrPicUrl"/>
           <p className="operationTip">扫描二维码登录圈外</p>
           <p className="ads">圈外PC版，提供更多便捷操作</p>
-          <button className="refreshQRCode" onClick={e=>this.refreshQRCode()}>刷新验证码</button>
         </div>
       </div>
     )

@@ -38,7 +38,7 @@ const routes = (
 		<Route path="/static/success" component={PcSuccess}/>
 		<Route path="/certificate/personal" component={CertificatePersonal}/>
 		<Route path="/certificate/main" component={CertificateMain}/>
-    <Route path="/static/login" component={Login}/>
+    <Route path="/login" component={Login}/>
     <Route path="/static/homepage" component={HomePage}/>
     <Route path="/static/login/success" component={LoginSuccess}/>
     <Route path="/static/login/error" component={LoginError}/>

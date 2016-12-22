@@ -3,35 +3,86 @@ import "./HomePage.less"
 import { connect } from "react-redux"
 import { set, startLoad, endLoad } from "redux/actions"
 import { Msg } from "react-weui"
-import Icon from "../../components/Icon"
+import NavigationBar from "../../components/NavigationBar"
 import * as _ from "lodash";
+import Icon from "../../components/Icon";
 const P = "detail"
+
+interface IModule {
+  moduleName:String,
+  moduleDescribe:String
+}
 
 @connect(status=>status)
 export default class Main extends React.Component<any, any> {
+
+
 
   static contextTypes = {
     router: React.PropTypes.object.isRequired
   }
 
+  constructor(){
+    super();
+    this.state={
+      navList:[
+        {
+          url:'/static/homepage',
+          name:'首页',
+          icon:'home'
+        },
+        {
+          url:'/static/fragment',
+          name:'碎片化课程',
+          icon:'fragment'
+        }
+      ]
+    }
+    console.log(this.state);
+  }
+
+  componentWillMount(){
+
+  }
+
   render() {
     const {login} = this.props;
-    console.log(login);
     const user = _.get(login,'user',{});
-    const buttons = [{
-      label: '确定',
-      onClick: () => {
-      }
-    }];
+
+
+    const pageModule = ()=>{
+      return (
+        <div className="page-module">
+          <span className="module-title">
+            模块标题
+          </span>
+          <span className="module-describe">
+            模块描述
+          </span>
+          <div className="module-item">
+            模块内容
+          </div>
+        </div>
+      )
+    }
 
     return (
+
       <div className="homePageContainer">
-        <div className="headImage">
-          <img src={user.headimgUrl} height="300px" width="300px"/>
+        <div className="top-banner">
+          <Icon style={{"margin-right":"60px"}} size="50" type={"logo"}/>
+          <div className="nav-container">
+            <NavigationBar navList={this.state.navList}/>
+          </div>
+          <div className="user-container">
+            <div className="img-box">
+              <img></img>
+            </div>
+          </div>
         </div>
-        <p className="tip">登录成功!</p>
-        <p className="tip">用户名:{user.weixinName}</p>
-        <p className="tip">OpenId:{user.openId}</p>
+        <div className="module-container">
+          {pageModule()}
+        </div>
       </div>
     )
   }
