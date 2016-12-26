@@ -20,6 +20,7 @@ import Login from "modules/pc/Login"
 import LoginSuccess from "modules/pc/LoginSuccess"
 import LoginError from "modules/pc/LoginError"
 import HomePage from "modules/pc/HomePage"
+import Home from "modules/pc/Home"
 
 const routes = (
 	<Route path="/" component={Base}>
@@ -42,7 +43,8 @@ const routes = (
     <Route path="/static/homepage" component={HomePage}/>
     <Route path="/static/login/success" component={LoginSuccess}/>
     <Route path="/static/login/error" component={LoginError}/>
-	</Route>
+	  <Route path="/static/home" component={Home}/>
+  </Route>
 )
 
 export default routes
